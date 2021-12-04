@@ -2,7 +2,7 @@
   "dependencies": {
     "got": "^11.8.3"
   },
-  "name": "otpinaja",
+  "name": "@binsarjr/otpinaja",
   "version": "1.0.0",
   "main": "dist/index.js",
   "lib": "dist",
