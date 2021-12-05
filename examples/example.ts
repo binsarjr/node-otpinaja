@@ -1,30 +1,36 @@
 import OtpinAja, { Layanan } from "../src";
 // https://otpinaja.com/
 // https://otpinaja.com/api/documentation
-const APIKEY = "<APIKEY>";
+const APIKEY = "APIF84OVBO1638589689149";
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let otpin = new OtpinAja().setApiKey(APIKEY);
 (async () => {
 	let list_layanan: Layanan[] = await otpin.ListLayanan();
 	console.log(list_layanan);
-	let layanan: Layanan = await otpin.Layanan(list_layanan[0].id);
+	let layanan: Layanan | null = await otpin.Layanan(207);
 	console.log(layanan);
 
-	// *Hati hati dengan order, apabila anda memiliki saldo, saldo anda akan berkurang
-	let order = await otpin.Order(layanan.id);
-	console.log(order);
+	if (layanan) {
+		// *Hati hati dengan order, apabila anda memiliki saldo, saldo anda akan berkurang
+		let order = await otpin.Order(layanan.id);
+		console.log(order);
 
-	// Listen otp
-	otpin.UbahOrderStatus(order.id, "processing");
+		// Listen otp
+		otpin.UbahOrderStatus(order.id, "processing");
 
-	while (true) {
-		let orderStatus = await otpin.OrderStatus(order.id);
-		if (orderStatus.otp != "") {
+		while (true) {
+			let orderStatus = await otpin.OrderStatus(order.id);
 			console.log(orderStatus);
-			break;
+			if (orderStatus.sms != "") {
+				console.log(orderStatus);
+				break;
+			}
+			delay(2000);
 		}
-	}
 
-	// berhentikan proses
-	otpin.UbahOrderStatus(order.id, "done");
+		// berhentikan proses
+		otpin.UbahOrderStatus(order.id, "done");
+	}
 })();
