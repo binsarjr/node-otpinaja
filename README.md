@@ -1,6 +1,18 @@
 # Unofficial API otpinaja.com
 Unofficial API otpinaja.com for nodejs. support typescript
 
+## Instalation
+Using npm
+```bash
+npm i @binsarjr/node-otpinaja
+```
+
+Using yarn
+```bash
+yarn add @binsarjr/node-otpinaja
+```
+
+
 ## Example
 ```ts
 import OtpinAja, { Layanan } from "../src";

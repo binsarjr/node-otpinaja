@@ -7,11 +7,33 @@
   "main": "dist/index.js",
   "lib": "dist",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binsarjr/node-otpinaja.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsc -p ."
   },
   "devDependencies": {
     "tsc": "^2.0.3",
     "typescript": "^4.5.2"
-  }
+  },
+  "types": "./dist/index.d.ts",
+  "description": "Unofficial API otpinaja.com for nodejs. support typescript",
+  "bugs": {
+    "url": "https://github.com/binsarjr/node-otpinaja/issues"
+  },
+  "homepage": "https://github.com/binsarjr/node-otpinaja#readme",
+  "directories": {
+    "example": "examples"
+  },
+  "keywords": [
+    "otp",
+    "otpinaja"
+  ],
+  "author": "Binsar Dwi Jasuma"
 }
